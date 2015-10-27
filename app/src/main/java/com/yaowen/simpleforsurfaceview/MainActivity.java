@@ -16,7 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnSimpleDraw, btnTimerDraw;
+    Button btnSimpleDraw, btnTimerDraw,clearDraw;
     SurfaceView sfv;
     SurfaceHolder sfh;
     private Timer mTimer;
@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btnSimpleDraw = (Button) findViewById(R.id.Button01);
         btnTimerDraw = (Button) findViewById(R.id.Button02);
+        clearDraw= (Button) findViewById(R.id.clearDraw);
+        clearDraw.setOnClickListener(new ClickEvent());
         btnSimpleDraw.setOnClickListener(new ClickEvent());
         btnTimerDraw.setOnClickListener(new ClickEvent());
         sfv = (SurfaceView) findViewById(R.id.SurfaceView01);
@@ -94,13 +96,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (v == btnSimpleDraw) {
-                ClearDraw();
                 SimpleDraw(Y_axis.length - 1);
             }
             if (v == btnTimerDraw) {
-                ClearDraw();
                 oldY = centerY;
                 mTimer.schedule(mTimerTask, 0, 5);
+            }
+            if (v==clearDraw){
+                ClearDraw();
             }
         }
     }
